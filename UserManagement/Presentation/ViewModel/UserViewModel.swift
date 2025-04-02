@@ -16,105 +16,94 @@ class UserViewModel: ObservableObject {
     private let userUsecase = UserUsecase(userRepository: UserRepository(userService: UserService()))
     
     
-    func loadUsers() {
+    func loadUsers() async {
         isLoading = true
-        Task {
-            await userUsecase.fetchUsers().handle {
-                isLoading = true
-            } successAction: { listUser in
-                isLoading = false
-                users = listUser
-            } failureAction: { error in
-                isLoading = false
-                errorMessage = "Error loading user: \(error.localizedDescription)"
-                
-            }
-        }
-    }
-    
-    func loadUser(by id: String) async {
-        isLoading = true
-        Task {
-            await userUsecase.fetchUser(by: id).handle {
-                isLoading = true
-            } successAction: { user in
-                isLoading = false
-                selectedUser = user
-            } failureAction: { error in
-                isLoading = false
-                errorMessage = "Error loading user: \(error.localizedDescription)"
-                
-            }
+        
+        await userUsecase.fetchUsers().handle {
+            isLoading = true
+        } successAction: { listUser in
+            isLoading = false
+            users = listUser
+        } failureAction: { error in
+            isLoading = false
+            errorMessage = "Error loading user: \(error.localizedDescription)"
             
         }
         
     }
     
-    func addUser(_ user: User) async {
+    func loadUser(by id: String) async {
         isLoading = true
-        Task {
-            await userUsecase.addUser(user).handle(
-                loadingAction: {
-                    isLoading = true
-                },
-                successAction: { user in
-                    isLoading = false
-                    selectedUser = user
-                },
-                failureAction:  { error in
-                    isLoading = false
-                    errorMessage = "Error loading user: \(error.localizedDescription)"
-                }
-            )
+        await userUsecase.fetchUser(by: id).handle {
+            isLoading = true
+        } successAction: { user in
+            isLoading = false
+            selectedUser = user
+        } failureAction: { error in
+            isLoading = false
+            errorMessage = "Error loading user: \(error.localizedDescription)"
             
         }
+    }
+    
+    func addUser(_ user: User) async {
+        isLoading = true
+        await userUsecase.addUser(user).handle(
+            loadingAction: {
+                isLoading = true
+            },
+            successAction: { user in
+                isLoading = false
+                selectedUser = user
+            },
+            failureAction:  { error in
+                isLoading = false
+                errorMessage = "Error loading user: \(error.localizedDescription)"
+            }
+        )
         
     }
     
     func updateUser(_ user: User) async {
         isLoading = true
-        Task {
-            await userUsecase.updateUser(user).handle(
-                loadingAction: {
-                    isLoading = true
-                },
-                successAction: { user in
-                    selectedUser = user
-                    Task {
-                        loadUsers()
-                    }
-                    
-                },
-                failureAction:  { error in
-                    isLoading = false
-                    errorMessage = "Error loading user: \(error.localizedDescription)"
+        await userUsecase.updateUser(user).handle(
+            loadingAction: {
+                isLoading = true
+            },
+            successAction: { user in
+                selectedUser = user
+                Task {
+                    await loadUsers()
                 }
-            )
-        }
+                
+            },
+            failureAction:  { error in
+                isLoading = false
+                errorMessage = "Error loading user: \(error.localizedDescription)"
+            }
+        )
         
     }
     
     func deleteUser(_ id: String) async {
         isLoading = true
-        Task {
-            await userUsecase.deleteUser(id).handle(
-                loadingAction: {
-                    isLoading = true
-                },
-                successAction: { user in
-                    selectedUser = user
-                    
-                    Task {
-                        loadUsers()
-                    }
-                    
-                },
-                failureAction:  { error in
-                    isLoading = false
-                    errorMessage = "Error loading user: \(error.localizedDescription)"
+        
+        await userUsecase.deleteUser(id).handle(
+            loadingAction: {
+                isLoading = true
+            },
+            successAction: { user in
+                selectedUser = user
+                
+                Task {
+                    await loadUsers()
                 }
-            )
-            
-        }
+                
+            },
+            failureAction:  { error in
+                isLoading = false
+                errorMessage = "Error loading user: \(error.localizedDescription)"
+            }
+        )
     }
 }
