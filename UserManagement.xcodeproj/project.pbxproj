@@ -14,7 +14,7 @@
 		27635DFF2D9ACC3700CF05A5 /* UserManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27635DFE2D9ACC3700CF05A5 /* UserManagementTests.swift */; };
 		27635E092D9ACC3700CF05A5 /* UserManagementUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27635E082D9ACC3700CF05A5 /* UserManagementUITests.swift */; };
 		27635E0B2D9ACC3700CF05A5 /* UserManagementUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27635E0A2D9ACC3700CF05A5 /* UserManagementUITestsLaunchTests.swift */; };
-		279879302D9BC7C1004D8F06 /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798792F2D9BC7C1004D8F06 /* Temp.swift */; };
+		277DE3EB2DA2819300416246 /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277DE3EA2DA2819300416246 /* LogHelper.swift */; };
 		279879362D9BDE5F004D8F06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279879352D9BDE5F004D8F06 /* User.swift */; };
 		279879392D9BDEBA004D8F06 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279879382D9BDEBA004D8F06 /* UserService.swift */; };
 		2798793B2D9BDF35004D8F06 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798793A2D9BDF35004D8F06 /* UserViewModel.swift */; };
@@ -57,7 +57,7 @@
 		27635E042D9ACC3700CF05A5 /* UserManagementUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UserManagementUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27635E082D9ACC3700CF05A5 /* UserManagementUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementUITests.swift; sourceTree = "<group>"; };
 		27635E0A2D9ACC3700CF05A5 /* UserManagementUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		2798792F2D9BC7C1004D8F06 /* Temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
+		277DE3EA2DA2819300416246 /* LogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
 		279879352D9BDE5F004D8F06 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		279879382D9BDEBA004D8F06 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		2798793A2D9BDF35004D8F06 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -119,6 +119,7 @@
 		27635DEB2D9ACC3500CF05A5 /* UserManagement */ = {
 			isa = PBXGroup;
 			children = (
+				277DE3E92DA2817A00416246 /* Utils */,
 				2798794F2D9BEC54004D8F06 /* Core */,
 				279879472D9BE310004D8F06 /* Presentation */,
 				279879462D9BE2FD004D8F06 /* Domain */,
@@ -127,7 +128,6 @@
 				27635DF02D9ACC3700CF05A5 /* Assets.xcassets */,
 				27635DF22D9ACC3700CF05A5 /* UserManagement.entitlements */,
 				27635DF32D9ACC3700CF05A5 /* Preview Content */,
-				2798792F2D9BC7C1004D8F06 /* Temp.swift */,
 			);
 			path = UserManagement;
 			sourceTree = "<group>";
@@ -155,6 +155,14 @@
 				27635E0A2D9ACC3700CF05A5 /* UserManagementUITestsLaunchTests.swift */,
 			);
 			path = UserManagementUITests;
+			sourceTree = "<group>";
+		};
+		277DE3E92DA2817A00416246 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				277DE3EA2DA2819300416246 /* LogHelper.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		279879372D9BDE99004D8F06 /* Data */ = {
@@ -410,9 +418,9 @@
 				2798793F2D9BE01D004D8F06 /* UserDetailView.swift in Sources */,
 				27635DEF2D9ACC3500CF05A5 /* ContentView.swift in Sources */,
 				279879432D9BE1B9004D8F06 /* AddUserView.swift in Sources */,
+				277DE3EB2DA2819300416246 /* LogHelper.swift in Sources */,
 				279879542D9BECB3004D8F06 /* Resource.swift in Sources */,
 				27635DED2D9ACC3500CF05A5 /* UserManagementApp.swift in Sources */,
-				279879302D9BC7C1004D8F06 /* Temp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

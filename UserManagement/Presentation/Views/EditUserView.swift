@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 // EditUserView.swift
 struct EditUserView: View {
@@ -51,6 +52,17 @@ struct EditUserView: View {
                       message: Text("All fields are required"),
                       dismissButton: .default(Text("OK")))
             }
+            .alert(isPresented: Binding<Bool>(
+                get: { viewModel.errorMessage != nil },
+                set: { _ in }
+            )) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text(viewModel.errorMessage ?? "Unknown"),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
+
         }
         .navigationTitle("Edit User")
     }
